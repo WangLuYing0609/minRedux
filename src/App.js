@@ -1,20 +1,27 @@
 import './App.css';
 import React from 'react'
 import { connect } from 'react-redux'
-@connect(state => state)
+import { addGun, lostGun, secondAdd } from './redux'
+// @connect(state => state, { addGun, lostGun, secondAdd })
 class App extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div className="App">
-
-        <button>增加</button>
-        <button>减少</button>
-        <button>过两秒再增加</button>
+        <p>现有{this.props.gun}</p>
+        {/* <button onClick={() => { this.props.addGun() }}>增加</button>
+        <button onClick={() => { this.props.lostGun() }}>减少</button>
+        <button onClick={() => { this.props.secondAdd() }}>过两秒再增加</button> */}
+        <button onClick={() => { console.log(this.props); }}>增加</button>
       </div>
     )
   }
 }
+
+// connect的另一种写法
+// App = (state => state, { addGun, lostGun, secondAdd })(App)
+
+
+
 
 // function App() {
 //   return (
