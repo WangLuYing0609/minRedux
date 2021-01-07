@@ -7,6 +7,8 @@ const LOST_GUN = 'LOST_GUN'
 
 const num = 10
 export function gun(state = num, action) {
+
+    console.log(action, 'state');
     switch (action.type) {
         case ADD_GUN:
             return state + 1
@@ -20,33 +22,39 @@ function add() {
     return { type: ADD_GUN }
 }
 export function addGun() {
-    return dispatch => {
-        dispatch(add())
-    }
+    // console.log('addgun');
+    // return dispatch => {
+    //     dispatch(add())
+    // }
+    return { type: ADD_GUN }
+
 }
 
 function lost() {
     return { type: LOST_GUN }
 }
 export function lostGun() {
-    return dispatch => {
-        dispatch(lost())
-    }
+    // return dispatch => {
+    //     dispatch(lost())
+    // }
+    return { type: LOST_GUN }
 }
 
-export function secondAdd() {
+export function secondAdd() {   
     return dispatch => {
         setTimeout(() => {
-            dispatch(addGun())
+            dispatch(add())
         }, 2000)
     }
 }
 const store = createStore(gun)
 function listener() {
-    console.log(`现在是${store.getState()}`);
+    // console.log(`现在是${store}`);
+    // console.log(store);
 }
 store.subscribe(listener)
-store.dispatch({ type: ADD_GUN })
-store.dispatch({ type: LOST_GUN })
-store.dispatch({ type: ADD_GUN })
-store.dispatch({ type: LOST_GUN })
+addGun()
+// store.dispatch({ type: ADD_GUN })
+// store.dispatch({ type: LOST_GUN })
+// store.dispatch({ type: ADD_GUN })
+// store.dispatch({ type: LOST_GUN })

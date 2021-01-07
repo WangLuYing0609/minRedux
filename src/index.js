@@ -7,18 +7,16 @@ import reportWebVitals from './reportWebVitals';
 import { gun } from './redux'
 import thunk from 'redux-thunk'
 import { Provider } from "./min.react-redux";
-import { applyMiddleware, combineReducers } from 'redux'
-import { createStore } from './min.redux'
+// import { applyMiddleware, combineReducers } from 'redux'
+import { createStore,applyMiddleware } from './min.redux'
 import Page from './context.demo';
 
 // 组织多个reducer 分别管理自身相关联的state
 // combineReducer, applyMiddleware(thunk)
-const combineReducer = combineReducers({ gun })
-const store = createStore(gun)
-console.log(store, 'store');
-
+// const combineReducer = combineReducers({ gun })
+const stores = createStore(gun,applyMiddleware(thunk))
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={stores}>
     <App />
   </Provider>,
   document.getElementById('root')
